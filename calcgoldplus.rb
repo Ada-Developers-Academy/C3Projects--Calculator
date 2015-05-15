@@ -49,7 +49,7 @@ if operation != "wrong"
   num1 = num1.delete(",").to_i
   end
 
-#repeats process above for the second number in the operation
+# repeats process above for the second number in the operation
 
   puts "And what would you like your second number to be?"
     num2 = gets.chomp
