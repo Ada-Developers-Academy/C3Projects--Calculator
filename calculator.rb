@@ -83,4 +83,8 @@ elsif (operation == "modulo")
   puts "#{first_num} % #{second_num} = #{mod_result}"
   puts "Your answer is: #{mod_result}"
 
+#Catches any operation user entries the might have slipped past the "while" validity check.
+else
+  puts "That is not a valid entry!"
+
 end
