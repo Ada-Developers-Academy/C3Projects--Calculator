@@ -4,11 +4,10 @@
 puts "Hey-oh! What kind of calculation would you like to perform?"
 operation = gets.chomp
 
-if operation != "*" && operation != "mult" && operation != "multiply" && operation != "/" && operation != "div" && operation != "divide" && operation != "-" && operation != "sub" && operation != "subtract" && operation != "+" && operation != "add" && operation != "addition"
+until operation == "^" || operation == "exp" || operation == "exponent" || operation == "%" || operation == "mod" || operation == "modulo" || operation == "*" || operation == "mult" || operation == "multiply" || operation == "/" || operation == "div" || operation == "divide" || operation == "-" || operation == "sub" || operation == "subtract" || operation == "+" || operation == "add" || operation == "addition"
 	puts "I\'m sorry, I don't understand. Please try again"
 	#kick it back to retrieve new operation and reassign operation
 	operation = gets.chomp
-	# redo until operation == "*" || operation == "mult" || operation == "multiply" || operation == "multiplication" || operation == "/" || operation == "div" || operation == "divide" || operation == "division" || operation == "-" || operation == "sub" || operation == "subtract" || operation == "subtraction" || operation == "+" || operation == "add" || operation == "addition"
 end 	
 
 
@@ -89,9 +88,17 @@ if operation == "*" || operation == "mult" || operation == "multiply" || operati
 		equation = "#{first_number_int} - #{second_number_int}"
 		result = first_number_int - second_number_int
 
-	else operation == "+" || operation == "add" || operation == "addition"
+	elsif operation == "+" || operation == "add" || operation == "addition"
 		equation = "#{first_number_int} + #{second_number_int}"
 		result = first_number_int + second_number_int
+
+	elsif operation == "%" || operation == "mod" || operation == "modulo"
+		equation = "#{first_number_int} % #{second_number_int}"
+		result = first_number_int % second_number_int
+
+	elsif operation == "^" || operation == "exp" || operation == "exponent"
+		equation = "#{first_number_int}^#{second_number_int} = " + ("#{first_number_int} * " * (second_number_int-1)) + "#{first_number_int}"
+		result = first_number_int ** second_number_int
 
 end
 
