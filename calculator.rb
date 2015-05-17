@@ -1,4 +1,4 @@
-# Calculator (Gold) - Loraine Kanervisto
+# Calculator (Dinner) - Loraine Kanervisto
 
 # Starts with user prompts and data collection
 
