@@ -5,8 +5,7 @@
 puts "Hello and welcome to Calculator."
 puts "Please specify what type of math you'd like to do:"
 
-math_operation = $stdin.gets.chomp
-puts math_operation
+math_operation = $stdin.gets.chomp.downcase
 
 puts "Type your first number: "
 first_num = $stdin.gets.chomp.to_i
@@ -26,6 +25,15 @@ if (math_operation == "+") || (math_operation == "add") || (math_operation == "a
   elsif (math_operation == "*") || (math_operation == "mul") || (math_operation == "multiply")
     print " #{first_num} * #{second_num} ="
     answer = first_num * second_num
+  elsif (math_operation == "exp") || (math_operation == "^") || (math_operation == "exponent")
+    print "#{first_num} ^ #{second_num} = "
+    answer = first_num ** second_num
+  elsif (math_operation == "%") || (math_operation == "mod") ||
+    (math_operation == "modulo") || (math_operation == "modulus")
+    print "#{first_num} % #{second_num} = "
+    answer = first_num % second_num
+  else
+    puts "I am sorry, I don't understand."
 end
 
 print answer.to_f
