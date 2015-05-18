@@ -1,5 +1,5 @@
 # Lila Garcia
-# Calculator Project -- Gold + first part of Platinum (integer vs float)
+# Calculator Project -- Gold + first part of Platinum (program returns integer or float)
 
 # Get user input for operation. Store operation
 puts "Welcome to this super-fun calculator. What kind of operation would you like to do today?"
@@ -26,7 +26,7 @@ elsif
 	end
 end
 
-# Make first number float or integer
+# Make first number float or integer, default is integer
 if num_type == "float"
 	first_num = first_num.to_f
 else 
@@ -38,8 +38,8 @@ end
 puts "What is the second number?"
 second_num = $stdin.gets.chomp
 if second_num.to_i.to_s == second_num || second_num.to_f.to_s == second_num
-elsif 
-	while second_num.to_i.to_s != second_num
+elsif	
+	while second_num.to_i.to_s != second_num 
 		puts "Nope! Please enter a number"
 		second_num = $stdin.gets.chomp
 	end
@@ -65,7 +65,7 @@ elsif operation == "div" || operation == "division" || operation == "/" || opera
 elsif operation == "mult" || operation == "multiplication" || operation == "*" || operation == "multiply"
 	result = first_num * second_num
 	puts "#{first_num} * #{second_num} = #{result}. Yay!"
-elsif operation == "exponent" || operation == "^"
+elsif operation == "exponent" || operation == "^" || operation =="exponential"
 	first_num = first_num.to_i
 	second_num = second_num.to_i
 	print "#{first_num}^#{second_num} = "
