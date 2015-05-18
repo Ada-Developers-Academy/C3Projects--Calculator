@@ -20,10 +20,10 @@ end
 puts "Great! I can #{operation}!"
 
 puts "What is your first number?"
-first_number = gets.chomp
+first_number = gets.chomp.to_i
 
 puts "What is your second number"
-second_number = gets.chomp
+second_number = gets.chomp.to_i
 
 # Do the math and print the equation and the result
 
@@ -34,7 +34,7 @@ elsif operation == "subtract"
 elsif operation == "multiply"
   puts "#{first_number} * #{second_number} = #{first_number * second_number}"
 elsif operation == "divide"
-  puts "#{first_number} / #{second_number} = #{first_number / second_number}"
+  puts "#{first_number} / #{second_number} = #{first_number / second_number} Remainder #{first_number % second_number}"
 else operation == "do an exponent"
   puts "#{first_number}^#{second_number} = #{first_number ** second_number}"
 end
