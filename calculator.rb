@@ -66,17 +66,11 @@ end
 
 # Evaluate a statement contained in parentheses and return the value
 def evaluate_parens(statement_in_parens)
-	# strip the commas out of the input
+	# strip the parens out of the input
 	statement = statement_in_parens[1...-1]
 	
 	# partition the statement using a regex to find the operation
-	# statement_parts = statement.partition(/[\+\-\^\*\/\%]/)
-
-	# # feed the elements of the array into the 2 numbers and operation
-	# statement_first_num = statement_parts[0].strip
-	# statement_second_num = statement_parts[2].strip
-	# statement_operation = statement_parts[1].strip
-
+	# feed the elements of the array into the 2 numbers and operation
 	statement_first_num = statement.partition(/[\+\-\^\*\/\%]/)[0].strip
 	statement_operation = statement.partition(/[\+\-\^\*\/\%]/)[1].strip
 	statement_second_num = statement.partition(/[\+\-\^\*\/\%]/)[2].strip	
@@ -127,20 +121,17 @@ until valid == true
 	# Check to make sure the input is a number
 	# If the input, when converted to a float then back to a string, or to an integer, then back to a string, does not retrain its identity
 	# or if the input is an empty string, then the number is invalid and a request is made for more input.
-	# deleted commas before processing to allow for numbers inputted with commas, like "2,000"
+	# Delete commas before processing to allow for numbers inputted with commas, like "2,000"
 	elsif first_number_raw.delete(",").to_f.to_s != first_number_raw.delete(",") \
 		&& first_number_raw.delete(",").to_i.to_s != first_number_raw.delete(",")
 		puts "Please enter a valid number."
 		first_number_raw = gets.chomp
-	# Otherwise the input must be a valid number and the loop ends
+	# Otherwise the input is a valid number and the loop ends
 	else
 	 	first_number = first_number_raw
 		valid = true
 	end
 end
-
-# Check if the input should be treated as an integer or a float and store it as the appropriate data
-# If there is a "." in the input string, convert the input to a float
 
 # Perform the same operations to check for validity with the second number inputted.
 puts "Enter your second number:"
@@ -167,16 +158,16 @@ end
 # run the calculate operation on the data collected and processed
 main_output, main_operator = calculate(operation, first_number, second_number)
 
-# Check if operation was exponent AND if the second number is an integer
+# Check if operation is exponent AND if the second number is an integer
 # If so, create full printout of operation (eg. 2 ^ 3 = 2 * 2 * 2)
 if $supported_operations[:exponent].include?(operation) && second_number.include?(".") == false
 	printout = "#{first_number}"
 	for i in 1...second_number.to_i
 		printout += " * #{first_number}"
 	end
-# And print the entire calculation with printout
+# And print the entire printed-out calculation
 	puts "#{first_number_raw} ^ #{second_number_raw} = #{printout} = #{main_output}"
-# Otherwise, print the calculation and output.
+# For all other operations, print the calculation and output.
 else
 	puts "#{first_number_raw} #{main_operator} #{second_number_raw} = #{main_output}"
 end
