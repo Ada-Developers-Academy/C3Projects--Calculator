@@ -2,20 +2,20 @@ puts "Hello! Welcome to my calculator!\nWhat kind of math operation would you li
 
 # What operation to use and what numbers to use
 
-operation = gets.chomp
+operation = gets.chomp.downcase
 
-if (operation.downcase == "addition") || (operation.downcase == "add") || (operation == "+")
+if (operation == "addition") || (operation == "add") || (operation == "+")
   operation = "add"
-elsif (operation.downcase == "subtraction") || (operation.downcase == "sub") || (operation == "-")
+elsif (operation == "subtraction") || (operation == "sub") || (operation == "-")
   operation = "subtract"
-elsif (operation.downcase == "multiplication") || (operation.downcase == "times") || (operation == "*")
+elsif (operation == "multiplication") || (operation == "times") || (operation == "*")
   operation = "multiply"
-elsif (operation.downcase == "division") || (operation.downcase == "div") || (operation == "/") || (operation == "divide")
+elsif (operation == "division") || (operation == "div") || (operation == "/") || (operation == "divide")
   operation = "divide"
   # Add a way to do an exponent and get the base number and the exponent
-elsif (operation.downcase == "exponent") || (operation.downcase == "square") || (operation.downcase == "squared")
+elsif (operation == "exponent") || (operation == "square") || (operation == "squared")
   operation = "do an exponent"
-else (operation.downcase == "modulo") || (operation.downcase == "mod")
+else (operation == "modulo") || (operation == "mod")
   operation = "use modulo"
 end
 
