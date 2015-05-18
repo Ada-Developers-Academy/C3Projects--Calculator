@@ -1,41 +1,30 @@
-# checks if user input is an operation
-def is_operator?(user_input)
-  operators = ["+", "add", "addition", "plus",
-               "-", "sub", "subtract", "subtraction",
-               "*", "multiply", "times",
-               "/", "divide", "division",
-               "^", "**", "power", "power of", "exponent", "exponents", "raise", "raised",
-               "%", "modulo", "modulus", "remainder"]
+# checks if user input is a number and not nil
+# prompts for new input if invalid
+# doesn't accept valid operators
+def check_input(input)
+  valid = false
 
-  if user_input == ""
-    puts "Um… you gotta enter *something*, bud. Try again.\n "
-    abort
-  elsif operators.include?(user_input) == false
-    puts "Hey, now. We don't do that kind of math here.\n "
-    abort
-  else
-    return user_input
+  while !valid
+    if input == " " || !([0,1, 2, 3, 4, 5, 6, 7, 8, 9].include?(input))
+      puts "That's not valid. Please try again."
+      input = gets.chomp
+    else
+      valid = true
+      return input
+    end
   end
 end
 
-# checks if user input is a number
-def is_number?(user_input)
-  num = Integer(user_input) rescue false
-  if  num == false
-    puts "Hey! That's NaN! >:("
-    abort
-  else
-    return user_input.to_i
-  end
-end
-
-# accepts non-operations
+# accepts nil - BAD
 puts "Hello!\nWhat operation would you like to perform?"
-operation = is_operator?(gets.chomp)
+operation = check_input(gets.chomp)
+
 puts "Great. What's the first number you'd like to use?"
-num1 = is_number?(gets.chomp)
+num1 = check_input(gets.chomp).to_i
+
 puts "Awesome! And the second?"
-num2 = is_number?(gets.chomp)
+num2 = check_input(gets.chomp).to_i
+
 
 # computes the equation
 case operation
@@ -74,10 +63,9 @@ when "%", "modulo", "modulus", "remainder"
   answer = num1 % num2
 
 else
-  # Should terminate when incorrect operation is submitted
-  # Check that this `abort` works
+  # The `puts` at the end is printed after this line
+  # This pseudo-error should terminate the program
   puts "Oops, that's not an operation. Try again."
-  abort
 end
 
 puts "\n#{num1} #{operation_sym} #{num2} = #{answer}"
