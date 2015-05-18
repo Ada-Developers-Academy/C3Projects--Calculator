@@ -39,14 +39,21 @@ end
 
 # CHECKS IF USER INPUT IS A NUMBER
 def is_number?(user_input)
-  # checks if user_input is an integer or a float
-  number = Integer(user_input) rescue false || Float(user_input) rescue false
+  number = false
 
-  if !number
-    puts "\nHey! That's NaN! >:("
-    abort
-  else
-    return user_input.to_f
+  while number == false
+    # checks if user_input is an integer or a float
+    number = Integer(user_input) rescue false || Float(user_input) rescue false
+
+    if !number
+      puts "\nHey! That's NaN! >:("
+    else
+      return user_input.to_f
+    end
+
+    # prompts user for valid number
+    print "Let's try that again. What number would you like to use? "
+    user_input = gets.chomp
   end
 end
 
