@@ -46,7 +46,7 @@ def is_number?(user_input)
     puts "\nHey! That's NaN! >:("
     abort
   else
-    return user_input
+    return user_input.to_f
   end
 end
 
@@ -66,12 +66,15 @@ num2 = is_number?(gets.chomp)
 if !(["^", "**", "power", "exponent", "exponents", "raise"].include?(operation))
   puts "\nHow would you like your answer: Integer (i) or Float (f)?"
   answer_format = gets.chomp.downcase
-  if answer_format == "float" || answer_format == "f"
-    num1 = num1.to_f
-    num2 = num2.to_f
+  if answer_format == "integer" || answer_format == "i"
+    num1 = num1.to_i
+    num2 = num2.to_i
   end
 
-  # handle float input
+else
+  puts "Your answer will be an integer since exponents only work with whole numbers."
+  num1 = num1.to_i
+  num2 = num2.to_i
 end
 
 
@@ -95,7 +98,7 @@ when "/", "divide", "division"
     answer = "nothing! You can't divide by 0, silly."
   else
     # 'if' and 'elsif' are hard-coded to allow for
-    # an answer with a remainder as coded in 'else'
+    # an answer with a remainder (as coded in 'else')
     if num2 > num1
         answer = 0
     elsif num1 % num2 == 0
