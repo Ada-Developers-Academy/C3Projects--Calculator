@@ -1,12 +1,11 @@
 # ROOM FOR IMPROVEMENT
 # Support parentheticals
-# Loop for correct inputs instead of aborting
 # Support commas in longer numbers
 # Allow for equation with more than 2 numbers
 # Support square root
 # Ask whether to end or continue after outputting result
 
-######
+# -------------
 
 # CHECKS IF USER INPUT IS A VALID OPERATION
 def is_operator?(user_input)
@@ -14,7 +13,7 @@ def is_operator?(user_input)
                "-", "sub", "subtract", "subtraction",
                "*", "multiply", "times",
                "/", "divide", "division",
-               "^", "**", "power", "power of", "exponent", "exponents", "raise", "raised",
+               "^", "**", "power", "exponent", "exponents", "raise",
                "%", "modulo", "modulus", "remainder"
   ]
 
@@ -22,7 +21,7 @@ def is_operator?(user_input)
     return user_input
   else
     while !(operators.include?(user_input))
-      # conditional informs user type of error
+      # conditional informs user of the type of error
       if user_input == "" # nil
         puts "\nUm… you have to enter *something*, bud."
       else
@@ -44,7 +43,7 @@ def is_number?(user_input)
   while number == false
     # checks if user_input is an integer or a float
     number = Integer(user_input) rescue false || Float(user_input) rescue false
-
+    # conditional informs user of the type of error
     if !number
       puts "\nHey! That's NaN! >:("
     else
@@ -79,7 +78,7 @@ if !(["^", "**", "power", "exponent", "exponents", "raise"].include?(operation))
   end
 
 else
-  puts "Your answer will be an integer since exponents only work with whole numbers."
+  puts "\nNote: Your answer will always be an integer since exponents only work with whole numbers."
   num1 = num1.to_i
   num2 = num2.to_i
 end
