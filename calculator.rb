@@ -13,8 +13,10 @@ elsif (operation.downcase == "multiplication") || (operation.downcase == "times"
 elsif (operation.downcase == "division") || (operation.downcase == "div") || (operation == "/") || (operation == "divide")
   operation = "divide"
   # Add a way to do an exponent and get the base number and the exponent
-else (operation.downcase == "exponent") || (operation.downcase == "square") || (operation.downcase == "squared")
+elsif (operation.downcase == "exponent") || (operation.downcase == "square") || (operation.downcase == "squared")
   operation = "do an exponent"
+else (operation.downcase == "modulo") || (operation.downcase == "mod")
+  operation = "use modulo"
 end
 
 puts "Great! I can #{operation}!"
@@ -35,6 +37,8 @@ elsif operation == "multiply"
   puts "#{first_number} * #{second_number} = #{first_number * second_number}"
 elsif operation == "divide"
   puts "#{first_number} / #{second_number} = #{first_number / second_number} Remainder #{first_number % second_number}"
-else operation == "do an exponent"
+elsif operation == "do an exponent"
   puts "#{first_number}^#{second_number} = #{first_number ** second_number}"
+else operation == "use modulo"
+  puts "#{first_number}%#{second_number} = #{first_number%second_number}"
 end
