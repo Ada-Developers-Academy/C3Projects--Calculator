@@ -49,6 +49,7 @@ def calculate(operation, first_num, second_num)
 	 	operator = $supported_operations[:multiplication][-1]
 
 	elsif $supported_operations[:division].include?(operation)
+		# always perform divisions with floats to get float division
 	 	output = first_number_data.to_f / second_number_data.to_f
 	 	operator = $supported_operations[:division][-1]
 
