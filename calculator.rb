@@ -1,32 +1,81 @@
-# checks if user input is a number and not nil
-# prompts for new input if invalid
-# doesn't accept valid operators
-def check_input(input)
-  valid = false
+# ROOM FOR IMPROVEMENT
+# Support parentheticals
+# Loop for correct inputs instead of aborting
+# Support commas in longer numbers
+# Allow for equation with more than 2 numbers
+# Support square root
+# Ask whether to end or continue after outputting result
 
-  while !valid
-    if input == " " || !([0,1, 2, 3, 4, 5, 6, 7, 8, 9].include?(input))
-      puts "That's not valid. Please try again."
-      input = gets.chomp
-    else
-      valid = true
-      return input
+######
+
+# CHECKS IF USER INPUT IS A VALID OPERATION
+def is_operator?(user_input)
+  operators = ["+", "add", "addition", "plus",
+               "-", "sub", "subtract", "subtraction",
+               "*", "multiply", "times",
+               "/", "divide", "division",
+               "^", "**", "power", "power of", "exponent", "exponents", "raise", "raised",
+               "%", "modulo", "modulus", "remainder"
+  ]
+
+  if operators.include?(user_input)
+    return user_input
+  else
+    while !(operators.include?(user_input))
+      # conditional informs user type of error
+      if user_input == "" # nil
+        puts "\nUm… you have to enter *something*, bud."
+      else
+        # if user_input is a word or unknown symbol
+        puts "\nHey, now. We don't do that kind of math here."
+      end
+
+      # prompts user for valid operator
+      print "Let's try that again. What operator would you like to use? "
+      user_input = gets.chomp
     end
   end
 end
 
-# accepts nil - BAD
-puts "Hello!\nWhat operation would you like to perform?"
-operation = check_input(gets.chomp)
+# CHECKS IF USER INPUT IS A NUMBER
+def is_number?(user_input)
+  # checks if user_input is an integer or a float
+  number = Integer(user_input) rescue false || Float(user_input) rescue false
 
-puts "Great. What's the first number you'd like to use?"
-num1 = check_input(gets.chomp).to_i
+  if !number
+    puts "\nHey! That's NaN! >:("
+    abort
+  else
+    return user_input
+  end
+end
 
-puts "Awesome! And the second?"
-num2 = check_input(gets.chomp).to_i
+# CONSOLE PROMPTS
+puts "\nHello! What operation would you like to perform: "
+puts "Addition (+), Subtraction (-), Multiplication (*), Division (/), Exponents (^), or Modulo (%)?"
+operation = is_operator?(gets.chomp)
+
+puts "\nGreat. What's the first number you'd like to use?"
+num1 = is_number?(gets.chomp)
+
+puts "\nAwesome! And the second number?"
+num2 = is_number?(gets.chomp)
+
+# only asks for float/integer result if not using the exponent operator
+# floats cannot be raised to any power
+if !(["^", "**", "power", "exponent", "exponents", "raise"].include?(operation))
+  puts "\nHow would you like your answer: Integer (i) or Float (f)?"
+  answer_format = gets.chomp.downcase
+  if answer_format == "float" || answer_format == "f"
+    num1 = num1.to_f
+    num2 = num2.to_f
+  end
+
+  # handle float input
+end
 
 
-# computes the equation
+# COMPUTES THE EQUATION
 case operation
 when "+", "add", "addition", "plus"
   operation_sym = "+"
@@ -43,8 +92,10 @@ when "*", "multiply", "times"
 when "/", "divide", "division"
   operation_sym = "/"
   if num2 == 0
-    answer = "nothing! You can't divide by 0, silly"
+    answer = "nothing! You can't divide by 0, silly."
   else
+    # 'if' and 'elsif' are hard-coded to allow for
+    # an answer with a remainder as coded in 'else'
     if num2 > num1
         answer = 0
     elsif num1 % num2 == 0
@@ -54,18 +105,26 @@ when "/", "divide", "division"
     end
   end
 
-when "^", "**", "power", "power of", "exponent", "exponents", "raise", "raised"
+when "^", "**", "power", "exponent", "exponents", "raise"
   operation_sym = "^"
-  answer = num1 ** num2
+  working_number = 1
+  # for as many times as the value of the power number
+  num2.times do
+    # multiply the base number by itself
+    working_number *= num1
+  end
+  answer = working_number
 
 when "%", "modulo", "modulus", "remainder"
   operation_sym = "%"
   answer = num1 % num2
 
 else
-  # The `puts` at the end is printed after this line
-  # This pseudo-error should terminate the program
-  puts "Oops, that's not an operation. Try again."
+  # should never get to this because of is_operator?
+  # kept as a fail safe
+  puts "\nOops, that's not a valid operation. Start over."
+  abort
 end
 
-puts "\n#{num1} #{operation_sym} #{num2} = #{answer}"
+# RESULT
+puts "\n#{num1} #{operation_sym} #{num2} = #{answer}\n "
