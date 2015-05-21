@@ -79,8 +79,8 @@ elsif (operation == "divide") || (operation == "division") || (operation == "/")
     puts "#{first_num} / #{second_num} = #{quotient}"
     puts "Your answer is #{quotient}"
   else
-    puts "#{first_num} / #{second_num} = #{quotient} R#{remainder}"
-    puts "Your answer is #{quotient} with a remainder of #{remainder}"
+    puts "#{first_num} / #{second_num} = #{quotient.to_i} R#{remainder.to_i}"
+    puts "Your answer is #{quotient.to_i} with a remainder of #{remainder.to_i}"
   end
 
 #Exponents
