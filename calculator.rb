@@ -11,13 +11,14 @@ first_num = gets.chomp
 # This while loop catches text input
 while first_num.to_i == 0
   #However, if the input is a string of zero, it allows that through.
-  if first_num.to_s == "0"
+  if first_num == "0"
     break
   end
   puts "That is totally not a number! Try agin!"
   first_num = gets.chomp
 end
-  first_num = first_num.to_i
+# Converts to a float after check to accomodate more complex calculations
+first_num = first_num.to_f
 
 #Collects math operation
 operator_examples = "\nOPTIONS\n+, add, plus\n-, subtract, minus\n*, multiply, times\n/, divide, division\nexponent, to the power of\nmodulo"
@@ -34,7 +35,7 @@ end
 
 #Collects second number
 puts "Perfect! Now enter a second number."
-second_num = gets.chomp.to_i
+second_num = gets.chomp
 
 #Checks second number
 while second_num.to_i == 0
@@ -44,7 +45,9 @@ while second_num.to_i == 0
   puts "That is totally not a number! Try agin!"
   second_num = gets.chomp
 end
-  second_num = second_num.to_i
+# Converts to a float after check to accomodate more complex calculations
+second_num = second_num.to_f
+
 #_________
 #Behind-the-scenes math operations
 
