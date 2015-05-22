@@ -6,10 +6,6 @@
 # Ask whether to end or continue after outputting result
 
 # -------------
-
-# CHECKS IF USER INPUT IS A VALID OPERATION
-def get_operator(user_input)
-  # unsure about how to access these arrays with case
   addition = ["+", "add", "addition", "plus"]
   subtraction = ["-", "sub", "subtract", "subtraction"]
   multiplication = ["*", "multiply", "times"]
@@ -18,6 +14,9 @@ def get_operator(user_input)
   modulo = ["%", "modulo", "modulus", "remainder"]
 
   operators = addition + subtraction + multiplication + division + exponent + modulo
+
+# CHECKS IF USER INPUT IS A VALID OPERATION
+def get_operator(user_input, operators)
 
   while !(operators.include?(user_input))
     # conditional informs user of the type of error
@@ -59,7 +58,7 @@ end
 # CONSOLE PROMPTS
 puts "\nHello! What operation would you like to perform: "
 puts "Addition (+), Subtraction (-), Multiplication (*), Division (/), Exponents (^), or Modulo (%)?"
-operation = get_operator(gets.chomp)
+operation = get_operator(gets.chomp, operators)
 
 puts "\nGreat. What's the first number you'd like to use?"
 num1 = is_number?(gets.chomp)
@@ -69,7 +68,7 @@ num2 = is_number?(gets.chomp)
 
 # only asks for float/integer result if not using the exponent operator
 # floats cannot be raised to any power
-if !(["^", "**", "power", "exponent", "exponents", "raise"].include?(operation))
+if !(exponent.include?(operation))
   puts "\nHow would you like your answer: Integer (i) or Float (f)?"
   answer_format = gets.chomp.downcase
   if answer_format == "integer" || answer_format == "i"
@@ -86,19 +85,19 @@ end
 
 # COMPUTES THE EQUATION
 case operation
-when "+", "add", "addition", "plus"
+when *addition
   operation_sym = "+"
   answer = num1 + num2
 
-when "-", "sub", "subtract", "subtraction"
+when *subtraction
   operation_sym = "-"
   answer = num1 - num2
 
-when "*", "multiply", "times"
+when *multiplication
   operation_sym = "*"
   answer = num1 * num2
 
-when "/", "divide", "division"
+when *division
   operation_sym = "/"
   if num2 == 0
     answer = "nothing! You can't divide by 0, silly."
@@ -114,7 +113,7 @@ when "/", "divide", "division"
     end
   end
 
-when "^", "**", "power", "exponent", "exponents", "raise"
+when *exponent
   operation_sym = "^"
   working_number = 1
   # for as many times as the value of the power number
@@ -124,7 +123,7 @@ when "^", "**", "power", "exponent", "exponents", "raise"
   end
   answer = working_number
 
-when "%", "modulo", "modulus", "remainder"
+when *modulo
   operation_sym = "%"
   answer = num1 % num2
 
