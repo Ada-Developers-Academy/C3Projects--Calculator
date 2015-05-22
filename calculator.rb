@@ -8,32 +8,32 @@
 # -------------
 
 # CHECKS IF USER INPUT IS A VALID OPERATION
-def is_operator?(user_input)
-  operators = ["+", "add", "addition", "plus",
-               "-", "sub", "subtract", "subtraction",
-               "*", "multiply", "times",
-               "/", "divide", "division",
-               "^", "**", "power", "exponent", "exponents", "raise",
-               "%", "modulo", "modulus", "remainder"
-  ]
+def get_operator(user_input)
+  # unsure about how to access these arrays with case
+  addition = ["+", "add", "addition", "plus"]
+  subtraction = ["-", "sub", "subtract", "subtraction"]
+  multiplication = ["*", "multiply", "times"]
+  division = ["/", "divide", "division"]
+  exponent = ["^", "**", "power", "exponent", "exponents", "raise"]
+  modulo = ["%", "modulo", "modulus", "remainder"]
 
-  if operators.include?(user_input)
-    return user_input
-  else
-    while !(operators.include?(user_input))
-      # conditional informs user of the type of error
-      if user_input == "" # nil
-        puts "\nUm… you have to enter *something*, bud."
-      else
-        # if user_input is a word or unknown symbol
-        puts "\nHey, now. We don't do that kind of math here."
-      end
+  operators = addition + subtraction + multiplication + division + exponent + modulo
 
-      # prompts user for valid operator
-      print "Let's try that again. What operator would you like to use? "
-      user_input = gets.chomp
+  while !(operators.include?(user_input))
+    # conditional informs user of the type of error
+    if user_input == "" # nil
+      puts "\nUm… you have to enter *something*, bud."
+    else
+      # if user_input is a word or unknown symbol
+      puts "\nHey, now. We don't do that kind of math here."
     end
+
+    # prompts user for valid operator
+    print "Let's try that again. What operator would you like to use? "
+    return user_input = gets.chomp
   end
+
+  return user_input
 end
 
 # CHECKS IF USER INPUT IS A NUMBER
@@ -59,7 +59,7 @@ end
 # CONSOLE PROMPTS
 puts "\nHello! What operation would you like to perform: "
 puts "Addition (+), Subtraction (-), Multiplication (*), Division (/), Exponents (^), or Modulo (%)?"
-operation = is_operator?(gets.chomp)
+operation = get_operator(gets.chomp)
 
 puts "\nGreat. What's the first number you'd like to use?"
 num1 = is_number?(gets.chomp)
@@ -106,7 +106,7 @@ when "/", "divide", "division"
     # 'if' and 'elsif' are hard-coded to allow for
     # an answer with a remainder (as coded in 'else')
     if num2 > num1
-        answer = 0
+        answer = num1.to_f / num2.to_f
     elsif num1 % num2 == 0
       answer = num1 / num2
     else
