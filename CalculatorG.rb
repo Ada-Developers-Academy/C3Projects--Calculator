@@ -232,6 +232,6 @@ elsif user_input == "exponent" || user_input == "^" || user_input == "**"
    exponent
 elsif user_input == "mod" || user_input == "%"
    mod
- else
+else
   %x{say Oops, invalid input}
 end
